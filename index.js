@@ -107,7 +107,8 @@ var getStatus = function (jar) {
       uri: endpoint,
       method: "GET",
       jar: jar,
-      json: true
+      json: true,
+      timeout: 1000
     },
       function (err, res, body) {
         debug("Retrieved status for %s: %s | error: ", endpoint, body, err);
