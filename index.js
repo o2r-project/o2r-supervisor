@@ -78,11 +78,14 @@ app.get('/status', function (req, res) {
     return;
   }
 
-  var response = {
+  var self = {
     service: "supervisor",
     version: config.version,
     levels: config.user.level,
     mongodb: config.mongo
+  };
+  var response = {
+    self: self
   };
 
   // collect status from other services
