@@ -16,6 +16,7 @@
  */
 
 const config = require('./config/config');
+const endpoints = require('./config/endpoints');
 const debug = require('debug')('supervisor');
 
 const async = require('async');
@@ -70,7 +71,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// endpoints
+// add service endpoint
 app.get('/status', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
   if (!req.isAuthenticated() || req.user.level < config.user.level.view_status) {
@@ -96,7 +97,7 @@ app.get('/status', function (req, res) {
   let ck = request.cookie(config.sessioncookie.value + "=" + requestcookies[config.sessioncookie.value]);
   j.setCookie(ck, config.sessioncookie.url);
 
-  async.map(config.endpoints, getStatus(j), function (err, responses) {
+  async.map(endpoints, getStatus(j), function (err, responses) {
     response.services = responses;
 
     res.send(response);

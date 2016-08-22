@@ -47,11 +47,4 @@ c.user = {};
 c.user.level = {};
 c.user.level.view_status = 500;
 
-c.endpoints = [
-  "http://localhost:8080/status",
-  "http://localhost:8081/status",
-  "http://localhost:8084/status",
-  "http://localhost:8083/status"
-];
-
 module.exports = c;
